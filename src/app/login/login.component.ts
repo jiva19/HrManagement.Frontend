@@ -37,21 +37,6 @@ export class LoginComponent {
 
     })
 
-    //
-    // //Case to access the test to mock an endpoint
-    // if (this.username === 'failedtest') {
-    //   const response = await fetch('/api/v1/auth', {
-    //     method: 'POST',
-    //     body: JSON.stringify({ user: this.username, pass: this.password })
-    //   });
-    //   if (response.status === 500) {
-    //           this.errorMessage = 'Cannot process, try later';
-    //           this.isLoggedIn = false;
-    //         } else {
-    //     const data = await response.json();
-    //           this.errorMessage = data.message;
-    //         }
-    // }
 
 
   }
