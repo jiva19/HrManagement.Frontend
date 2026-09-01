@@ -1,0 +1,25 @@
+<div class="modal-overlay">
+  <div class="modal-card">
+    <h3>Add Employee</h3>
+
+    <div class="form-field">
+      <label for="name">Name</label>
+      <input id="name" type="text" [(ngModel)]="name" placeholder="Enter employee name" />
+    </div>
+
+    <div class="form-field">
+      <label for="department">Department</label>
+      <select id="department" [(ngModel)]="department">
+        <option value="" disabled selected>Select a department</option>
+        <option value="Manager">Manager</option>
+        <option value="IT">IT</option>
+        <option value="HR">HR</option>
+      </select>
+    </div>
+
+    <div class="modal-actions">
+      <button class="cancel-button" (click)="cancel()">Cancel</button>
+      <button class="save-button" (click)="save()">Save</button>
+    </div>
+  </div>
+</div>

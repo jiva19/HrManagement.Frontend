@@ -1,0 +1,62 @@
+<div class="page-background">
+  <div class="employee-list-container">
+    <div class="header-row">
+      <h2>Employees</h2>
+      <button class="add-button" (click)="showAddModal = true">+ Add Employee</button>
+      <button class="logout-button" (click)="logout()">Log Out</button>
+
+      <app-add-employee-modal
+        *ngIf="showAddModal"
+        (employeeCreated)="onEmployeeCreated($event)"
+        (cancelled)="onCancel()"
+      ></app-add-employee-modal>
+    </div>
+
+    <div class="search-bar">
+      <input
+        type="text"
+        placeholder="Search by name"
+        [(ngModel)]="searchName"
+        (keyup.enter)="loadEmployees(searchName, searchDepartment)"
+      />
+      <select [(ngModel)]="searchDepartment">
+        <option value="">All Departments</option>
+        <option value="Manager">Manager</option>
+        <option value="IT">IT</option>
+        <option value="HR">HR</option>
+      </select>
+      <button class="search-button" (click)="loadEmployees(searchName, searchDepartment)">Search</button>
+    </div>
+
+    <div class="table-card">
+      <table>
+        <thead>
+        <tr>
+          <th>Name</th>
+          <th>Department</th>
+          <th class="actions-col">Actions</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let employee of employees">
+          <td>{{ employee.name }}</td>
+          <td><span class="department-badge">{{ employee.department }}</span></td>
+          <td class="actions-col">
+            <button class="delete-button" (click)="confirmDelete(employee.id)">Delete</button>
+
+          </td>
+        </tr>
+        </tbody>
+      </table>
+      <app-confirm-delete-modal
+        *ngIf="pendingDeleteId !== null"
+        (confirmed)="onDeleteConfirmed()"
+        (cancelled)="onDeleteCancelled()"
+      ></app-confirm-delete-modal>
+
+      <div class="empty-state" *ngIf="employees.length === 0">
+        No employees found.
+      </div>
+    </div>
+  </div>
+</div>
